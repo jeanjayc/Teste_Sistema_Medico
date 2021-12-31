@@ -9,8 +9,8 @@ namespace Crud_Medico_Paciente.Application.Interfaces
     {
         Task<IEnumerable<PatientVM>> GetPatientsAsync();
         Task<PatientVM> GetPatientByIdAsync(Guid id);
-        Task<PatientVM> CretaPatientAsync(PatientVM patient);
-        Task<PatientVM> UpdatePatientAsync(PatientVM patient);
-        Task<PatientVM> RemovePatientAsync(PatientVM patient);
+        Task CretaPatientAsync(PatientVM patientVM);
+        Task<PatientVM> UpdatePatientAsync(PatientVM patientVM);
+        Task<PatientVM> RemovePatientAsync(PatientVM patientVM);
     }
 }
