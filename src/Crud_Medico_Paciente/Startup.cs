@@ -1,3 +1,4 @@
+using Crud_Medico_Paciente.Application.Filters;
 using Crud_Medico_Paciente.IoC;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -21,7 +22,10 @@ namespace Crud_Medico_Paciente
         public void ConfigureServices(IServiceCollection services)
         {
            
-            services.AddControllers();
+            services.AddControllers(options => options.Filters.Add<NotificationFilter>());
+
+            services.AddScoped<NotificationFilter>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Crud_Medico_Paciente", Version = "v1" });

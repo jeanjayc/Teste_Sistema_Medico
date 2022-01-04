@@ -32,11 +32,9 @@ namespace Crud_Medico_Paciente.Api.Controllers
         {
             try
             {
-                var result = await _doctorService.CretaDoctorAsync(doctorVM);
+                var DoctorCreated = await _doctorService.CretaDoctorAsync(doctorVM);
 
-                if (!result) return BadRequest();
-
-                return Ok(result);
+                return Ok(DoctorCreated);
             }
             catch (Exception e)
             {

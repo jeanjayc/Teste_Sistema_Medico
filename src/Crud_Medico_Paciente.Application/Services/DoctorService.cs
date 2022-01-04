@@ -2,6 +2,7 @@
 using Crud_Medico_Paciente.Api.ViewModels;
 using Crud_Medico_Paciente.Application.Interfaces;
 using Crud_Medico_Paciente.Application.Notificacoes;
+using Crud_Medico_Paciente.Application.Utils;
 using Crud_Medico_Paciente.Domain.Entities;
 using Crud_Medico_Paciente.Domain.Interfaces;
 using System;
@@ -12,26 +13,33 @@ using System.Threading.Tasks;
 
 namespace Crud_Medico_Paciente.Application.Services
 {
-    public class DoctorService : BaseService, IDoctorService
+    public class DoctorService : IDoctorService
     {
+        private readonly NotificationContext _notificationContext;
         private readonly IDoctorRepository _doctorRepository;
         private readonly IMapper _mapper;
-        public DoctorService(IDoctorRepository doctorRepository, IMapper mapper, INotificador notificador): base(notificador)
+        public DoctorService(IDoctorRepository doctorRepository, IMapper mapper, NotificationContext notificationContext)
         {
             _doctorRepository = doctorRepository;
             _mapper = mapper;
+            _notificationContext = notificationContext;
         }
-        public async Task<bool> CretaDoctorAsync(DoctorVM doctorVM)
+        public async Task<Doctor> CretaDoctorAsync(DoctorVM doctorVM)
         {
             var doctorEntity = _mapper.Map<Doctor>(doctorVM);
 
             if(doctorVM.CRMUF == doctorEntity.CRMUF)
             {
-                Notificar("Já existe um Medico cadastrado com o CRM informado");
-                return false;
+                _notificationContext.AddNotification("Doctor","Já existe um Medico cadastrado com o CRM informado");
             }
+
+            if (_notificationContext.HasNotification)
+            {
+                return default;
+            }
+
             await _doctorRepository.CretaDoctorAsync(doctorEntity);
-            return true;    
+            return doctorEntity;
         }
 
         public async Task<IEnumerable<DoctorVM>> GetDoctorsVM()
@@ -40,9 +48,10 @@ namespace Crud_Medico_Paciente.Application.Services
             return _mapper.Map<IEnumerable<DoctorVM>>(doctorsEntity);
         }
 
-        public Task<DoctorVM> GetDoctorVMById(Guid id)
+        public async Task<DoctorVM> GetDoctorVMById(Guid id)
         {
-            throw new NotImplementedException();
+            var doctorEntity = await _doctorRepository.GetDoctorByIdAsync(id);
+            return _mapper.Map<DoctorVM>(doctorEntity);
         }
 
         public Task<DoctorVM> GetPatientsByDoctor(Guid id)

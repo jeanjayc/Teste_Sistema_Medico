@@ -1,4 +1,5 @@
 ﻿using Crud_Medico_Paciente.Api.ViewModels;
+using Crud_Medico_Paciente.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Crud_Medico_Paciente.Application.Interfaces
     {
         Task<IEnumerable<DoctorVM>> GetDoctorsVM();
         Task<DoctorVM> GetDoctorVMById(Guid id);
-        Task<bool> CretaDoctorAsync(DoctorVM doctorVM);
+        Task<Doctor> CretaDoctorAsync(DoctorVM doctorVM);
         Task<DoctorVM> UpdateDoctorAsync(DoctorVM doctorVM);
         Task<DoctorVM> GetPatientsByDoctor(Guid id);
         Task<DoctorVM> RemoveDoctorAsync(DoctorVM doctorVM);
