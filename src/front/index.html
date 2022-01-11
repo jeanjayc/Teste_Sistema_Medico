@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="POST">
+        <fieldset>
+            <legend>Cadastro Médico</legend>
+            <p>
+                <input type="text" name="name" id="name" />
+                <label for="name">Name</label>
+            </p>
+            <p>
+                <input type="text" name="crm" id="crm" />
+                <label for="crm">CRM</label>
+            </p>
+            <p>
+                <input type="text" name="crmuf" id="crmuf" />
+                <label for="crmuf">CRM-UF</label>
+            </p>
+            <p>
+                <button type="button" onclick="loadDoc()">Enviar</button>
+            </p>
+        </fieldset>
+    </form>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

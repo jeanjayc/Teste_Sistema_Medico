@@ -1,14 +1,12 @@
 ﻿using AutoMapper;
 using Crud_Medico_Paciente.Api.ViewModels;
 using Crud_Medico_Paciente.Application.Interfaces;
-using Crud_Medico_Paciente.Application.Notificacoes;
 using Crud_Medico_Paciente.Application.Utils;
 using Crud_Medico_Paciente.Domain.Entities;
 using Crud_Medico_Paciente.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Crud_Medico_Paciente.Application.Services
@@ -28,7 +26,8 @@ namespace Crud_Medico_Paciente.Application.Services
         {
             var doctorEntity = _mapper.Map<Doctor>(doctorVM);
 
-            if(doctorVM.CRMUF == doctorEntity.CRMUF)
+            //aqui é feito a verificação se já existe um doctor com o crm cadastrado
+            if(_doctorRepository.GetDoctorByCrm(doctorVM.CRMUF).Result.Any())
             {
                 _notificationContext.AddNotification("Doctor","Já existe um Medico cadastrado com o CRM informado");
             }

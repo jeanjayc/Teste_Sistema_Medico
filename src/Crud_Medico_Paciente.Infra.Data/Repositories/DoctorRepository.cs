@@ -43,6 +43,11 @@ namespace Crud_Medico_Paciente.Infra.Data.Repositories
                 .SingleOrDefaultAsync(d => d.Id == id);
         }
 
+        public async Task<IEnumerable<Doctor>> GetDoctorByCrm(string crm)
+        {
+            var doctorEntity = await _context.Doctors.Where(d => d.CRMUF == crm).ToListAsync();
+            return doctorEntity;
+        }
         public async Task<Doctor> UpdateDoctorAsync(Doctor doctor)
         {
             _context.Doctors.Update(doctor);

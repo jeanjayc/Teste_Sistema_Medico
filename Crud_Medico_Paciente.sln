@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud_Medico_Paciente.Api", "Crud_Medico_Paciente\Crud_Medico_Paciente.Api.csproj", "{EC1365D6-039D-4B14-84DB-35BCD28243E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crud_Medico_Paciente.Api", "src\Crud_Medico_Paciente.Api\Crud_Medico_Paciente.Api.csproj", "{58C29C1B-39FE-4EAA-A01A-B5A2B62902E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud_Medico_Paciente.Domain", "Crud_Medico_Paciente.Domain\Crud_Medico_Paciente.Domain.csproj", "{3427DBE1-F33F-4986-89B9-450A518EFCD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crud_Medico_Paciente.Application", "src\Crud_Medico_Paciente.Application\Crud_Medico_Paciente.Application.csproj", "{59ADDE2D-2953-4BDE-ADEB-F77C89ACADED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud_Medico_Paciente.Application", "Crud_Medico_Paciente.Application\Crud_Medico_Paciente.Application.csproj", "{008293E5-896B-407F-A77E-15B0B590914B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crud_Medico_Paciente.Domain", "src\Crud_Medico_Paciente.Domain\Crud_Medico_Paciente.Domain.csproj", "{4AB6100C-75C1-4B6B-8981-AF4645E69D87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud_Medico_Paciente.Infra.Data", "Crud_Medico_Paciente.Infra.Data\Crud_Medico_Paciente.Infra.Data.csproj", "{853DAC92-E2F0-4811-A1CA-7CF75BE5496D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crud_Medico_Paciente.Infra.Data", "src\Crud_Medico_Paciente.Infra.Data\Crud_Medico_Paciente.Infra.Data.csproj", "{B5E15ADA-BB1D-4041-BBB7-D95BB5FA8A58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Crud_Medico_Paciente.IoC", "Crud_Medico_Paciente.IoC\Crud_Medico_Paciente.IoC.csproj", "{FF50F229-4DDB-4295-8E44-BCA2B84EC1E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Crud_Medico_Paciente.IoC", "src\Crud_Medico_Paciente.IoC\Crud_Medico_Paciente.IoC.csproj", "{833328CD-FBA6-4B78-A1B8-F7AFB0A19A58}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,26 +19,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EC1365D6-039D-4B14-84DB-35BCD28243E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EC1365D6-039D-4B14-84DB-35BCD28243E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EC1365D6-039D-4B14-84DB-35BCD28243E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EC1365D6-039D-4B14-84DB-35BCD28243E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3427DBE1-F33F-4986-89B9-450A518EFCD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3427DBE1-F33F-4986-89B9-450A518EFCD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3427DBE1-F33F-4986-89B9-450A518EFCD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3427DBE1-F33F-4986-89B9-450A518EFCD7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{008293E5-896B-407F-A77E-15B0B590914B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{008293E5-896B-407F-A77E-15B0B590914B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{008293E5-896B-407F-A77E-15B0B590914B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{008293E5-896B-407F-A77E-15B0B590914B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{853DAC92-E2F0-4811-A1CA-7CF75BE5496D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{853DAC92-E2F0-4811-A1CA-7CF75BE5496D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{853DAC92-E2F0-4811-A1CA-7CF75BE5496D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{853DAC92-E2F0-4811-A1CA-7CF75BE5496D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF50F229-4DDB-4295-8E44-BCA2B84EC1E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF50F229-4DDB-4295-8E44-BCA2B84EC1E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF50F229-4DDB-4295-8E44-BCA2B84EC1E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF50F229-4DDB-4295-8E44-BCA2B84EC1E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58C29C1B-39FE-4EAA-A01A-B5A2B62902E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58C29C1B-39FE-4EAA-A01A-B5A2B62902E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58C29C1B-39FE-4EAA-A01A-B5A2B62902E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58C29C1B-39FE-4EAA-A01A-B5A2B62902E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59ADDE2D-2953-4BDE-ADEB-F77C89ACADED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59ADDE2D-2953-4BDE-ADEB-F77C89ACADED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59ADDE2D-2953-4BDE-ADEB-F77C89ACADED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59ADDE2D-2953-4BDE-ADEB-F77C89ACADED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AB6100C-75C1-4B6B-8981-AF4645E69D87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AB6100C-75C1-4B6B-8981-AF4645E69D87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AB6100C-75C1-4B6B-8981-AF4645E69D87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AB6100C-75C1-4B6B-8981-AF4645E69D87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5E15ADA-BB1D-4041-BBB7-D95BB5FA8A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5E15ADA-BB1D-4041-BBB7-D95BB5FA8A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5E15ADA-BB1D-4041-BBB7-D95BB5FA8A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5E15ADA-BB1D-4041-BBB7-D95BB5FA8A58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{833328CD-FBA6-4B78-A1B8-F7AFB0A19A58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{833328CD-FBA6-4B78-A1B8-F7AFB0A19A58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{833328CD-FBA6-4B78-A1B8-F7AFB0A19A58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{833328CD-FBA6-4B78-A1B8-F7AFB0A19A58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
