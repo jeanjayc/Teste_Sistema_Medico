@@ -2,7 +2,9 @@ const crm = document.getElementById("crm");
 const crmuf = document.getElementById("crmuf");
 
 
+
 function loadDoc() {
+    debugger;
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function() {
         document.getElementById("name").innerHTML = this.responseText;

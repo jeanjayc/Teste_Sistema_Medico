@@ -18,5 +18,6 @@ namespace Crud_Medico_Paciente.Api.ViewModels
 
         [ScaffoldColumn(false)]
         public string NameDoctor { get; set; }
+        public Guid DoctorId { get; set; }
     }
 }

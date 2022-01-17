@@ -11,6 +11,7 @@ namespace Crud_Medico_Paciente.Domain.Interfaces
     {
         Task<IEnumerable<Patient>> GetPatientsAsync();
         Task<Patient> GetPatientByIdAsync(Guid id);
+        Task<Patient> GetPatientByCpfAsync(string cpf);
         Task<Patient> CretaPatientAsync(Patient patient);
         Task<Patient> UpdatePatientAsync(Patient patient);
         Task<Patient> RemovePatientAsync(Patient patient);

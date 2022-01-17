@@ -27,9 +27,9 @@ namespace Crud_Medico_Paciente.Application.Services
             var doctorEntity = _mapper.Map<Doctor>(doctorVM);
 
             //aqui é feito a verificação se já existe um doctor com o crm cadastrado
-            if(_doctorRepository.GetDoctorByCrm(doctorVM.CRMUF).Result.Any())
+            if (_doctorRepository.GetDoctorByCrm(doctorVM.CRMUF).Result.Any())
             {
-                _notificationContext.AddNotification("Doctor","Já existe um Medico cadastrado com o CRM informado");
+                _notificationContext.AddNotification("Doctor", "Já existe um Medico cadastrado com o CRM informado");
             }
 
             if (_notificationContext.HasNotification)
@@ -53,19 +53,29 @@ namespace Crud_Medico_Paciente.Application.Services
             return _mapper.Map<DoctorVM>(doctorEntity);
         }
 
-        public Task<DoctorVM> GetPatientsByDoctor(Guid id)
+        public async Task<Doctor> GetPatientsByDoctor(Guid id)
         {
-            throw new NotImplementedException();
+            return await _doctorRepository.GetDoctorByIdAsync(id);
         }
 
-        public Task<DoctorVM> UpdateDoctorAsync(DoctorVM doctor)
+        public async Task<Doctor> UpdateDoctorAsync(DoctorVM doctor)
         {
-            throw new NotImplementedException();
+            var doctorEntity = _mapper.Map<Doctor>(doctor);
+
+            return await _doctorRepository.UpdateDoctorAsync(doctorEntity);
+
         }
 
-        public Task<DoctorVM> RemoveDoctorAsync(DoctorVM doctor)
+        public async Task RemoveDoctorAsync(DoctorVM doctor)
         {
-            throw new NotImplementedException();
+            var doctorEntity = await _doctorRepository.GetPatientsByDoctor(doctor.Id);
+
+            if (doctorEntity.Patients.Any())
+            {
+                _notificationContext.AddNotification("Doctor", "Esse médico não pode ser excluido, pois tem pacientes vinculados a ele");
+            }
+
+            await _doctorRepository.RemoveDoctorAsync(doctorEntity);
         }
     }
 }

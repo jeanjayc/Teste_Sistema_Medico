@@ -13,8 +13,8 @@ namespace Crud_Medico_Paciente.Application.Interfaces
         Task<IEnumerable<DoctorVM>> GetDoctorsVM();
         Task<DoctorVM> GetDoctorVMById(Guid id);
         Task<Doctor> CretaDoctorAsync(DoctorVM doctorVM);
-        Task<DoctorVM> UpdateDoctorAsync(DoctorVM doctorVM);
-        Task<DoctorVM> GetPatientsByDoctor(Guid id);
-        Task<DoctorVM> RemoveDoctorAsync(DoctorVM doctorVM);
+        Task<Doctor> UpdateDoctorAsync(DoctorVM doctorVM);
+        Task<Doctor> GetPatientsByDoctor(Guid id);
+        Task RemoveDoctorAsync(DoctorVM doctorVM);
     }
 }

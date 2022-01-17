@@ -27,6 +27,11 @@ namespace Crud_Medico_Paciente.Infra.Data.Repositories
             return await _context.Patients.FindAsync(id);
         }
 
+        public async Task<Patient> GetPatientByCpfAsync(string cpf)
+        {
+            return await _context.Patients.FindAsync(cpf);
+        }
+
         public async Task<IEnumerable<Patient>> GetPatientsAsync()
         {
             return await _context.Patients.ToListAsync();

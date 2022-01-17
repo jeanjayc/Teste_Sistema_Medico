@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace Crud_Medico_Paciente.Api.Controllers
 {
-    [Route("api/[controller]/")]
     public class DoctorController : ControllerBase
     {
         private ILogger<DoctorController> _logger;
@@ -18,7 +17,8 @@ namespace Crud_Medico_Paciente.Api.Controllers
             _doctorService = doctorService;
             _logger = logger;
         }
-        
+
+        [Route("api/Doctor/GetAllDoctor")]
         [HttpGet()]
         public async Task<IActionResult> GetAllDoctor()
         {
@@ -43,5 +43,38 @@ namespace Crud_Medico_Paciente.Api.Controllers
             }
 
         }
+
+        [Route("api/Doctor/UpdateDoctor")]
+        [HttpPut]
+        public async Task<IActionResult> UpdateDoctor(Guid id, [FromBody] DoctorVM doctorVM)
+        {
+            var doctor = await _doctorService.GetDoctorVMById(id);
+
+            if (doctor == null) return NotFound();
+
+            if (doctor.Id != doctorVM.Id) return BadRequest();
+
+            if(!ModelState.IsValid) return BadRequest();
+
+            var result = await _doctorService.UpdateDoctorAsync(doctorVM);
+
+            return Ok(result);
+        }
+
+        [Route("api/Doctor/RemoveDoctor")]
+        [HttpDelete]
+        public async Task<IActionResult> RemoveDoctor(Guid id)
+        {
+            var doctor = await _doctorService.GetDoctorVMById(id);
+
+            if (doctor == null) return NotFound();
+
+            if (id != doctor.Id) return BadRequest();
+
+            await _doctorService.RemoveDoctorAsync(doctor);
+
+            return Ok(doctor);
+        }
+
     }
 }
