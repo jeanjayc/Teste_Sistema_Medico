@@ -2,6 +2,7 @@
 using Crud_Medico_Paciente.Api.ViewModels;
 using Crud_Medico_Paciente.Application.Interfaces;
 using Crud_Medico_Paciente.Application.Utils;
+using Crud_Medico_Paciente.Application.ViewModels;
 using Crud_Medico_Paciente.Domain.Entities;
 using Crud_Medico_Paciente.Domain.Interfaces;
 using System;
@@ -22,7 +23,7 @@ namespace Crud_Medico_Paciente.Application.Services
             _mapper = mapper;
             _notificationContext = notificationContext;
         }
-        public async Task<Doctor> CretaDoctorAsync(DoctorVM doctorVM)
+        public async Task<Doctor> CretaDoctorAsync(DoctorInputModel doctorVM)
         {
             var doctorEntity = _mapper.Map<Doctor>(doctorVM);
 
@@ -41,24 +42,26 @@ namespace Crud_Medico_Paciente.Application.Services
             return doctorEntity;
         }
 
-        public async Task<IEnumerable<DoctorVM>> GetDoctorsVM()
+        public async Task<IEnumerable<DoctorInputModel>> GetDoctorsVM()
         {
             var doctorsEntity = await _doctorRepository.GetDoctorsAsync();
-            return _mapper.Map<IEnumerable<DoctorVM>>(doctorsEntity);
+   
+            return _mapper.Map<IEnumerable<DoctorInputModel>>(doctorsEntity);
         }
 
-        public async Task<DoctorVM> GetDoctorVMById(Guid id)
+        public async Task<DoctorOutputModel> GetDoctorVMById(Guid id)
         {
             var doctorEntity = await _doctorRepository.GetDoctorByIdAsync(id);
-            return _mapper.Map<DoctorVM>(doctorEntity);
+            return _mapper.Map<DoctorOutputModel>(doctorEntity);
         }
 
-        public async Task<Doctor> GetPatientsByDoctor(Guid id)
+        public async Task<IEnumerable<DoctorOutputModel>> GetPatientsByDoctor(string nameDoctor)
         {
-            return await _doctorRepository.GetDoctorByIdAsync(id);
+            var doctorsEntity = await _doctorRepository.GetPatientsByDoctor(nameDoctor);
+            return _mapper.Map<IEnumerable<DoctorOutputModel>>(doctorsEntity);
         }
 
-        public async Task<Doctor> UpdateDoctorAsync(DoctorVM doctor)
+        public async Task<Doctor> UpdateDoctorAsync(DoctorInputModel doctor)
         {
             var doctorEntity = _mapper.Map<Doctor>(doctor);
 
@@ -66,9 +69,9 @@ namespace Crud_Medico_Paciente.Application.Services
 
         }
 
-        public async Task RemoveDoctorAsync(DoctorVM doctor)
+        public async Task RemoveDoctorAsync(Guid id)
         {
-            var doctorEntity = await _doctorRepository.GetPatientsByDoctor(doctor.Id);
+            var doctorEntity = await _doctorRepository.GetDoctorByIdAsync(id);
 
             if (doctorEntity.Patients.Any())
             {

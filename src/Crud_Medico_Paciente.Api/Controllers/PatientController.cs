@@ -20,10 +20,12 @@ namespace Crud_Medico_Paciente.Api.Controllers
 
         [Route("api/Patients/CreatePatient")]
         [HttpPost]
-        public async Task<IActionResult> CreatePatient([FromBody] PatientVM patientVM)
+        public async Task<IActionResult> CreatePatient([FromBody] PatientInputModel patientVM)
         {
             try
             {
+                if (!ModelState.IsValid) return BadRequest();
+
                 var result = await _patientService.CretaPatientAsync(patientVM);
 
                 if (result == null) return NotFound();

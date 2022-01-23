@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Crud_Medico_Paciente.Application\Crud_Medico_Paciente.Application.csproj" />
     <ProjectReference Include="..\Crud_Medico_Paciente.Domain\Crud_Medico_Paciente.Domain.csproj" />
   </ItemGroup>
 

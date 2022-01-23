@@ -9,10 +9,11 @@ namespace Crud_Medico_Paciente.Domain.Interfaces
     {
         Task<IEnumerable<Doctor>> GetDoctorsAsync();
         Task<Doctor> GetDoctorByIdAsync(Guid id);
+        Task<Doctor> GetDoctorByName(string name);
         Task<Doctor> CretaDoctorAsync(Doctor doctor);
         Task<IEnumerable<Doctor>> GetDoctorByCrm(string crm);
         Task<Doctor> UpdateDoctorAsync(Doctor doctor);
-        Task<Doctor> GetPatientsByDoctor(Guid id);
+        Task<IEnumerable<Doctor>> GetPatientsByDoctor(string name);
         Task<Doctor> RemoveDoctorAsync(Doctor doctor);
     }
 }

@@ -4,6 +4,7 @@ using Crud_Medico_Paciente.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Crud_Medico_Paciente.Infra.Data.Repositories
@@ -27,9 +28,11 @@ namespace Crud_Medico_Paciente.Infra.Data.Repositories
             return await _context.Patients.FindAsync(id);
         }
 
-        public async Task<Patient> GetPatientByCpfAsync(string cpf)
+        public async Task<IEnumerable<Patient>> GetPatientByCpfAsync(string cpf)
         {
-            return await _context.Patients.FindAsync(cpf);
+            var result = await _context.Patients.Where(p => p.CPF == cpf).ToListAsync();
+
+            return result;
         }
 
         public async Task<IEnumerable<Patient>> GetPatientsAsync()

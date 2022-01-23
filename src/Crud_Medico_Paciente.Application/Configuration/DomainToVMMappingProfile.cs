@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Crud_Medico_Paciente.Api.ViewModels;
+using Crud_Medico_Paciente.Application.ViewModels;
 using Crud_Medico_Paciente.Domain.Entities;
 
 namespace Crud_Medico_Paciente.Application.Configuration
@@ -8,8 +9,10 @@ namespace Crud_Medico_Paciente.Application.Configuration
     {
         public DomainToVMMappingProfile()
         {
-            CreateMap<Doctor, DoctorVM>().ReverseMap();
-            CreateMap<Patient, PatientVM>().ReverseMap();
+            CreateMap<Doctor, DoctorOutputModel>().ReverseMap();
+            CreateMap<Doctor, DoctorInputModel>().ReverseMap();
+            CreateMap<Patient, PatientInputModel>().ReverseMap();
+            CreateMap<Patient, PatientOutputModel>().ReverseMap();
         }
     }
 }

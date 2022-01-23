@@ -1,4 +1,5 @@
 ﻿using Crud_Medico_Paciente.Api.ViewModels;
+using Crud_Medico_Paciente.Application.ViewModels;
 using Crud_Medico_Paciente.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace Crud_Medico_Paciente.Application.Interfaces
 {
     public interface IDoctorService
     {
-        Task<IEnumerable<DoctorVM>> GetDoctorsVM();
-        Task<DoctorVM> GetDoctorVMById(Guid id);
-        Task<Doctor> CretaDoctorAsync(DoctorVM doctorVM);
-        Task<Doctor> UpdateDoctorAsync(DoctorVM doctorVM);
-        Task<Doctor> GetPatientsByDoctor(Guid id);
-        Task RemoveDoctorAsync(DoctorVM doctorVM);
+        Task<IEnumerable<DoctorInputModel>> GetDoctorsVM();
+        Task<DoctorOutputModel> GetDoctorVMById(Guid id);
+        Task<Doctor> CretaDoctorAsync(DoctorInputModel doctorVM);
+        Task<Doctor> UpdateDoctorAsync(DoctorInputModel doctorVM);
+        Task<IEnumerable<DoctorOutputModel>> GetPatientsByDoctor(string nameDoctor);
+        Task RemoveDoctorAsync(Guid id);
     }
 }

@@ -1,3 +1,4 @@
+using Crud_Medico_Paciente.Api.Configuration;
 using Crud_Medico_Paciente.Application.Filters;
 using Crud_Medico_Paciente.IoC;
 using Microsoft.AspNetCore.Builder;
@@ -31,6 +32,8 @@ namespace Crud_Medico_Paciente
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Crud_Medico_Paciente", Version = "v1" });
             });
 
+            services.AddIdentityConfiguration(Configuration);
+
             services.AddInfra(Configuration);
         }
 
@@ -43,6 +46,8 @@ namespace Crud_Medico_Paciente
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Crud_Medico_Paciente v1"));
             }
+
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
 

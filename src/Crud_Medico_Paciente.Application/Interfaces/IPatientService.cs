@@ -1,4 +1,5 @@
 ﻿using Crud_Medico_Paciente.Api.ViewModels;
+using Crud_Medico_Paciente.Application.ViewModels;
 using Crud_Medico_Paciente.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,12 +9,12 @@ namespace Crud_Medico_Paciente.Application.Interfaces
 {
     public interface IPatientService
     {
-        Task<IEnumerable<PatientVM>> GetPatientsAsync();
-        Task<PatientVM> GetPatientByIdAsync(Guid id);
-        Task<PatientVM> GetPatientByCpf(string cpf);
-        Task<Patient> CretaPatientAsync(PatientVM patientVM);
-        Task<PatientVM> UpdatePatientAsync(PatientVM patientVM);
-        Task<PatientVM> RemovePatientAsync(PatientVM patientVM);
+        Task<IEnumerable<PatientOutputModel>> GetPatientsAsync();
+        Task<PatientOutputModel> GetPatientByIdAsync(Guid id);
+        Task<PatientOutputModel> GetPatientByCpf(string cpf);
+        Task<Patient> CretaPatientAsync(PatientInputModel patientVM);
+        Task UpdatePatientAsync(PatientInputModel patientVM);
+        Task<PatientOutputModel> RemovePatientAsync(Guid id);
 
     }
 }

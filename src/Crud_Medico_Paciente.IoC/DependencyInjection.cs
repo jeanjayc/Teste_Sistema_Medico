@@ -21,6 +21,7 @@ namespace Crud_Medico_Paciente.IoC
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
             b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName)));
 
+
             services.AddScoped<NotificationContext>();
 
             services.AddScoped<IDoctorRepository, DoctorRepository>();

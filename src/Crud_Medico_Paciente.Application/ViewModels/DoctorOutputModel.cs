@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Crud_Medico_Paciente.Api.ViewModels
 {
-    public class DoctorVM
+    public class DoctorOutputModel
     {
         public Guid Id { get; set; }
 
@@ -16,6 +16,6 @@ namespace Crud_Medico_Paciente.Api.ViewModels
         [MinLength(9)]
         [MaxLength(9)]
         public string CRMUF { get; set; }
-        public IEnumerable<PatientVM> Patients { get; set; }
+        public IEnumerable<PatientInputModel> Patients { get; set; }
     }
 }

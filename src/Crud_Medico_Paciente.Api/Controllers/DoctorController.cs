@@ -1,5 +1,6 @@
 ﻿using Crud_Medico_Paciente.Api.ViewModels;
 using Crud_Medico_Paciente.Application.Interfaces;
+using Crud_Medico_Paciente.Application.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -26,9 +27,31 @@ namespace Crud_Medico_Paciente.Api.Controllers
             return Ok(doctors);
         }
 
+        [Route("api/Doctor/GetDoctorById")]
+        [HttpGet]
+        public async Task<IActionResult> GetDoctorById(Guid id)
+        {
+            if (id == null) NotFound();
+
+            var result = await _doctorService.GetDoctorVMById(id);
+
+            return Ok(result);
+        }
+        [Route("api/Doctor/GetPatientByDoctor")]
+        [HttpGet]
+        public async Task<IActionResult> GetPatientsByDoctor(string nameDoctor)
+        
+        {
+            if (nameDoctor == null) return NotFound();
+
+            var result = await _doctorService.GetPatientsByDoctor(nameDoctor);
+
+            return Ok(result);
+        }
+
         [Route("api/Doctor/CreateDoctor")]
         [HttpPost]
-        public async Task<IActionResult> CreateDoctor([FromBody] DoctorVM doctorVM)
+        public async Task<IActionResult> CreateDoctor([FromBody] DoctorInputModel doctorVM)
         {
             try
             {
@@ -46,7 +69,7 @@ namespace Crud_Medico_Paciente.Api.Controllers
 
         [Route("api/Doctor/UpdateDoctor")]
         [HttpPut]
-        public async Task<IActionResult> UpdateDoctor(Guid id, [FromBody] DoctorVM doctorVM)
+        public async Task<IActionResult> UpdateDoctor(Guid id, [FromBody] DoctorInputModel doctorVM)
         {
             var doctor = await _doctorService.GetDoctorVMById(id);
 
@@ -71,7 +94,7 @@ namespace Crud_Medico_Paciente.Api.Controllers
 
             if (id != doctor.Id) return BadRequest();
 
-            await _doctorService.RemoveDoctorAsync(doctor);
+            await _doctorService.RemoveDoctorAsync(id);
 
             return Ok(doctor);
         }

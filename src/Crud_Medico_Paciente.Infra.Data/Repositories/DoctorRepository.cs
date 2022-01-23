@@ -27,8 +27,14 @@ namespace Crud_Medico_Paciente.Infra.Data.Repositories
 
         public async Task<Doctor> GetDoctorByIdAsync(Guid id)
         {
-            return await _context.Doctors.FindAsync(id);
-            
+            return await _context.Doctors
+                .Include(p => p.Patients)
+                .FirstOrDefaultAsync(d => d.Id == id);
+        }
+
+        public async Task<Doctor> GetDoctorByName(string name)
+        {
+            return await _context.Doctors.FindAsync(name);
         }
 
         public async Task<IEnumerable<Doctor>> GetDoctorsAsync()
@@ -36,11 +42,11 @@ namespace Crud_Medico_Paciente.Infra.Data.Repositories
             return await _context.Doctors.ToListAsync();
         }
 
-        public async Task<Doctor> GetPatientsByDoctor(Guid id)
+        public async Task<IEnumerable<Doctor>> GetPatientsByDoctor(string name)
         {
             return await _context.Doctors
                 .Include(p => p.Patients)
-                .SingleOrDefaultAsync(d => d.Id == id);
+                .Where(d => d.Name == name).ToListAsync();
         }
 
         public async Task<IEnumerable<Doctor>> GetDoctorByCrm(string crm)

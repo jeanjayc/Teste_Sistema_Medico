@@ -2,6 +2,7 @@
 using Crud_Medico_Paciente.Api.ViewModels;
 using Crud_Medico_Paciente.Application.Interfaces;
 using Crud_Medico_Paciente.Application.Utils;
+using Crud_Medico_Paciente.Application.ViewModels;
 using Crud_Medico_Paciente.Domain.Entities;
 using Crud_Medico_Paciente.Domain.Interfaces;
 using Microsoft.Extensions.Logging;
@@ -30,13 +31,13 @@ namespace Crud_Medico_Paciente.Application.Services
             _logger = logger;
         }
 
-        public async Task<Patient> CretaPatientAsync(PatientVM patientVM)
+        public async Task<Patient> CretaPatientAsync(PatientInputModel patientVM)
         {
             try
             {
                 var patientEntity = _mapper.Map<Patient>(patientVM);
 
-                if (_patientRepository.GetPatientByCpfAsync(patientEntity.CPF).Result.CPF.Any())
+                if (_patientRepository.GetPatientByCpfAsync(patientEntity.CPF).Result.Any())
                 {
                     _notificationContext.AddNotification("Patient", "Já existe um paciente cadastrado com este CPF");
                 }
@@ -54,30 +55,38 @@ namespace Crud_Medico_Paciente.Application.Services
             }
         }
 
-        public Task<PatientVM> GetPatientByIdAsync(Guid id)
+        public async Task<PatientOutputModel> GetPatientByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var patientEntity = await _patientRepository.GetPatientByIdAsync(id);
+            return _mapper.Map<PatientOutputModel>(patientEntity);
         }
 
-        public Task<IEnumerable<PatientVM>> GetPatientsAsync()
+        public async Task<IEnumerable<PatientOutputModel>> GetPatientsAsync()
         {
-            throw new NotImplementedException();
+            var patientEntity =  await _patientRepository.GetPatientsAsync();
+            return _mapper.Map<IEnumerable<PatientOutputModel>>(patientEntity);
         }
 
-        public async Task<PatientVM> GetPatientByCpf(string cpf)
+        public async Task<PatientOutputModel> GetPatientByCpf(string cpf)
         {
             var patientEntity = await _patientRepository.GetPatientByCpfAsync(cpf);
-            var result = _mapper.Map<PatientVM>(patientEntity);
+            var result = _mapper.Map<PatientOutputModel>(patientEntity);
             return result;
         }
-        public Task<PatientVM> UpdatePatientAsync(PatientVM patientVM)
+        public async Task UpdatePatientAsync(PatientInputModel patientVM)
         {
-            throw new NotImplementedException();
+            var patientEntity = _mapper.Map<Patient>(patientVM);
+            await _patientRepository.UpdatePatientAsync(patientEntity);
         }
 
-        public Task<PatientVM> RemovePatientAsync(PatientVM patientVM)
+        public async Task<PatientOutputModel> RemovePatientAsync(Guid id)
         {
-            throw new NotImplementedException();
+            var patientEntity = await _patientRepository.GetPatientByIdAsync(id);
+
+            await _patientRepository.RemovePatientAsync(patientEntity);
+
+            return _mapper.Map<PatientOutputModel>(patientEntity);
+
         }
     }
 }
