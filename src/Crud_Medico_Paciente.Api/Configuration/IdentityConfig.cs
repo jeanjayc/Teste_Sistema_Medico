@@ -14,8 +14,7 @@ namespace Crud_Medico_Paciente.Api.Configuration
             services.AddDbContext<ApplicationDbContext>(options =>
             options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentityCore<IdentityUser>()
-                .AddRoles<IdentityRole>()
+            services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
 

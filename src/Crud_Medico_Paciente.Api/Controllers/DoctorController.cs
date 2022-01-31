@@ -20,14 +20,14 @@ namespace Crud_Medico_Paciente.Api.Controllers
         }
 
         [Route("api/Doctor/GetAllDoctor")]
-        [HttpGet()]
+        [HttpGet]
         public async Task<IActionResult> GetAllDoctor()
         {
             var doctors = await _doctorService.GetDoctorsVM();
             return Ok(doctors);
         }
 
-        [Route("api/Doctor/GetDoctorById")]
+        [Route("api/Doctor/GetDoctorById/{id}")]
         [HttpGet]
         public async Task<IActionResult> GetDoctorById(Guid id)
         {

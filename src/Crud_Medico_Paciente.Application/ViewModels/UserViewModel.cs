@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Crud_Medico_Paciente.Application.ViewModels
 {
-    public class RegisterUserVM
+    public class RegisterUserViewModel
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         [EmailAddress(ErrorMessage = "Email inválido")]

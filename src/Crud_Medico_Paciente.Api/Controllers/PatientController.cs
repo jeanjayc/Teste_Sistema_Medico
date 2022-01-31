@@ -18,6 +18,35 @@ namespace Crud_Medico_Paciente.Api.Controllers
             _logger = logger;
         }
 
+        [Route("api/Patients/GetAllPatients")]
+        [HttpGet]
+        public async Task<IActionResult> GetAllPatients()
+        {
+            var result = await _patientService.GetPatientsAsync();
+            return Ok(result);
+        }
+
+        [Route("api/Patients/GetPatientsById/{id}")]
+        [HttpGet()]
+        public async Task<IActionResult> GetPatientsById(Guid id)
+        {
+            if(id == null) return NotFound();
+
+            var result = await _patientService.GetPatientByIdAsync(id);
+            return Ok(result);
+        }
+
+
+        //[Route("api/Patients/GetPatientsByCPF/{cpf}")]
+        //[HttpGet]
+        //public async Task<IActionResult> GetPatientsByCPF(string cpf)
+        //{
+        //    if (cpf == null) return NotFound();
+
+        //    var result = await _patientService.GetPatientByCpf(cpf);
+        //    return Ok(result);
+        //}
+
         [Route("api/Patients/CreatePatient")]
         [HttpPost]
         public async Task<IActionResult> CreatePatient([FromBody] PatientInputModel patientVM)
@@ -39,5 +68,6 @@ namespace Crud_Medico_Paciente.Api.Controllers
             }
             
         }
+        
     }
 }
